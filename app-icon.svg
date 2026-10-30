@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <!-- الفلاتر والظلال ثلاثية الأبعاد -->
+    <filter id="iconDropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#000000" flood-opacity="0.65"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#000000" flood-opacity="0.4"/>
+    </filter>
+    <filter id="goldGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="rayGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="14"/>
+    </filter>
+
+    <!-- التدرجات الذهبية الملكية عيار 24 -->
+    <linearGradient id="goldMetallic" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fff8d6"/>
+      <stop offset="20%" stop-color="#f5d77f"/>
+      <stop offset="45%" stop-color="#d4af37"/>
+      <stop offset="70%" stop-color="#aa8012"/>
+      <stop offset="90%" stop-color="#ffd966"/>
+      <stop offset="100%" stop-color="#735104"/>
+    </linearGradient>
+
+    <linearGradient id="goldLight" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#c99718"/>
+      <stop offset="50%" stop-color="#fde047"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+
+    <!-- تدرج أرضية الكحلي الملكي اللالوردي العميق -->
+    <radialGradient id="navyRadial" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#142a4a"/>
+      <stop offset="55%" stop-color="#0a182d"/>
+      <stop offset="100%" stop-color="#030811"/>
+    </radialGradient>
+
+    <!-- تدرج صفحات المصحف اللؤلؤية -->
+    <linearGradient id="pageGradLeft" x1="100%" y1="0%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#e8e2d2"/>
+      <stop offset="25%" stop-color="#fdfbf7"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+
+    <linearGradient id="pageGradRight" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#e8e2d2"/>
+      <stop offset="25%" stop-color="#fdfbf7"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+
+    <!-- تدرج حامل المصحف (الرحلة الخشبية المذهبة) -->
+    <linearGradient id="standGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#54381e"/>
+      <stop offset="50%" stop-color="#2d1d0f"/>
+      <stop offset="100%" stop-color="#190e06"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 1. قاعدة الأيقونة المجسمة (Squircle) مع حواف ذهبية وظل عميق -->
+  <rect x="24" y="24" width="464" height="464" rx="108" ry="108" fill="url(#navyRadial)" filter="url(#iconDropShadow)" stroke="url(#goldMetallic)" stroke-width="7"/>
+  
+  <!-- إطار داخلي ذهبي متباعد لتعزيز الفخامة الإسلامية -->
+  <rect x="38" y="38" width="436" height="436" rx="94" ry="94" fill="none" stroke="rgba(212, 175, 55, 0.4)" stroke-width="1.8" stroke-dasharray="8 6"/>
+
+  <!-- 2. زخرفة النجمة الثمانية الإسلامية الهندسية الشفافة في الخلفية -->
+  <g opacity="0.12" stroke="url(#goldMetallic)" stroke-width="2" fill="none" transform="translate(256, 256)">
+    <rect x="-140" y="-140" width="280" height="280" rx="12"/>
+    <rect x="-140" y="-140" width="280" height="280" rx="12" transform="rotate(45)"/>
+    <circle r="160"/>
+    <circle r="110"/>
+  </g>
+
+  <!-- 3. هالة النور السماوية الصاعدة (معراج الإتقان) -->
+  <circle cx="256" cy="225" r="95" fill="#facc15" opacity="0.16" filter="url(#rayGlow)"/>
+  <path d="M256,120 L270,195 L256,220 L242,195 Z" fill="url(#goldLight)" opacity="0.45" filter="url(#rayGlow)"/>
+
+  <!-- 4. حامل المصحف المذهب (الرحلة الشريفة) -->
+  <g transform="translate(0, 10)">
+    <!-- الساق اليسرى للرحلة -->
+    <path d="M165,340 L195,405 C205,420 220,425 240,415 L256,400 L200,330 Z" fill="url(#standGrad)" stroke="url(#goldMetallic)" stroke-width="2.5"/>
+    <!-- الساق اليمنى للرحلة -->
+    <path d="M347,340 L317,405 C307,420 292,425 272,415 L256,400 L312,330 Z" fill="url(#standGrad)" stroke="url(#goldMetallic)" stroke-width="2.5"/>
+    <!-- قوس التقاطع المركزي المنقوش -->
+    <path d="M210,380 Q256,360 302,380 Q256,395 210,380 Z" fill="url(#goldMetallic)"/>
+  </g>
+
+  <!-- 5. غلاف المصحف الجلدي الملكي الخلفي -->
+  <path d="M108,310 C145,302 215,296 256,312 C297,296 367,302 404,310 C412,312 418,322 414,330 C380,338 297,348 256,335 C215,348 132,338 98,330 C94,322 100,312 108,310 Z" fill="#084236" stroke="url(#goldMetallic)" stroke-width="3"/>
+
+  <!-- 6. صفحات المصحف الشريف المفتوح (المحكم المتقن) -->
+  <!-- الصفحة اليمنى (بالرؤية المباشرة: اليمين) -->
+  <path d="M256,305 C295,286 368,290 405,300 C410,301 414,296 413,290 L402,185 C401,180 396,176 391,175 C355,166 290,165 256,188 Z" 
+        fill="url(#pageGradRight)" stroke="url(#goldMetallic)" stroke-width="3.5" filter="url(#goldGlow)"/>
+
+  <!-- حزمة الصفحات المذهبة الجانبية (سمك الورق المذهب) -->
+  <path d="M405,300 L411,304 L400,190 L395,186 Z" fill="url(#goldMetallic)"/>
+
+  <!-- الصفحة اليسرى (بالرؤية المباشرة: اليسار) -->
+  <path d="M256,305 C217,286 144,290 107,300 C102,301 98,296 99,290 L110,185 C111,180 116,176 121,175 C157,166 222,165 256,188 Z" 
+        fill="url(#pageGradLeft)" stroke="url(#goldMetallic)" stroke-width="3.5" filter="url(#goldGlow)"/>
+
+  <!-- حزمة الصفحات المذهبة الجانبية لليسار -->
+  <path d="M107,300 L101,304 L112,190 L117,186 Z" fill="url(#goldMetallic)"/>
+
+  <!-- 7. إطار وتفاصيل الصفحة الداخلية والخطوط القرآنية المذهبة (ترمز لدقة المتشابهات) -->
+  <!-- زخرفة الصفحة اليمنى -->
+  <path d="M272,204 C298,188 348,188 382,195 L391,280 C358,272 305,272 272,286 Z" fill="none" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.8"/>
+  <line x1="282" y1="218" x2="372" y2="210" stroke="url(#goldMetallic)" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="282" y1="234" x2="376" y2="226" stroke="rgba(212, 175, 55, 0.7)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="282" y1="250" x2="374" y2="242" stroke="rgba(212, 175, 55, 0.7)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="282" y1="266" x2="368" y2="258" stroke="url(#goldMetallic)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- زخرفة الصفحة اليسرى -->
+  <path d="M240,204 C214,188 164,188 130,195 L121,280 C154,272 207,272 240,286 Z" fill="none" stroke="rgba(212, 175, 55, 0.45)" stroke-width="1.8"/>
+  <line x1="230" y1="218" x2="140" y2="210" stroke="url(#goldMetallic)" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="230" y1="234" x2="136" y2="226" stroke="rgba(212, 175, 55, 0.7)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="230" y1="250" x2="138" y2="242" stroke="rgba(212, 175, 55, 0.7)" stroke-width="2" stroke-linecap="round"/>
+  <line x1="230" y1="266" x2="144" y2="258" stroke="url(#goldMetallic)" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- 8. فاصل المصحف المذهب (الشريط الحريري المتدلي) -->
+  <path d="M256,188 C254,230 258,280 255,340 C254,352 262,358 266,346 C268,300 264,240 258,188 Z" fill="url(#goldMetallic)" filter="url(#goldGlow)"/>
+
+  <!-- 9. تاج الإتقان: نجمة الضبط الثمانية المشعة في قمة المعراج -->
+  <g transform="translate(256, 128)" filter="url(#goldGlow)">
+    <!-- شعاع النجمة -->
+    <circle r="22" fill="#fef08a" opacity="0.3" filter="url(#rayGlow)"/>
+    <!-- النجمة الإسلامية الثمانية الدقيقة -->
+    <rect x="-14" y="-14" width="28" height="28" fill="url(#goldMetallic)" rx="3"/>
+    <rect x="-14" y="-14" width="28" height="28" fill="url(#goldMetallic)" rx="3" transform="rotate(45)"/>
+    <circle r="6" fill="#ffffff"/>
+  </g>
+
+  <!-- 10. ومضات النور الإلهي الدقيقة (رمز ضبط الحروف ودقة الآيات) -->
+  <circle cx="218" cy="154" r="2.5" fill="#ffffff" filter="url(#goldGlow)"/>
+  <circle cx="294" cy="154" r="2.5" fill="#ffffff" filter="url(#goldGlow)"/>
+  <circle cx="256" cy="94" r="3" fill="#fff7b0" filter="url(#goldGlow)"/>
+</svg>

@@ -1,0 +1,15 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Temporary scripts & inspection files
+*.txt
+scratch/
+.system_generated/
+test_*.js
+find_*.js
+check_*.js
+inspect_*.js
+fix_*.js
+inject_*.js

@@ -1,0 +1,346 @@
+const fs = require('fs');
+const html = fs.readFileSync('C:/Users/melwa/.gemini/antigravity/scratch/mutashabihat-app/index.html', 'utf8');
+
+// Mock a minimal DOM
+const dom = {
+  elements: {},
+  getElementById(id) {
+    if (!this.elements[id]) {
+      this.elements[id] = {
+        id: id,
+        innerHTML: '',
+        textContent: '',
+        className: '',
+        classList: { contains: () => false, toggle: () => {} },
+        style: {},
+        scrollIntoView: () => {},
+        children: [],
+        appendChild(child) { this.children.push(child); }
+      };
+    }
+    return this.elements[id];
+  },
+  createElement(tag) {
+    return {
+      tag: tag,
+      className: '',
+      innerHTML: '',
+      textContent: '',
+      style: {}
+    };
+  },
+  querySelectorAll() { return []; },
+  querySelector() { return null; }
+};
+
+const window = { innerWidth: 1200 };
+const document = dom;
+
+// Extract JS
+const startMarker = 'const surahsData = ';
+const startIdx = html.indexOf(startMarker);
+const endMarker = '</script>\n</body>';
+const endIdx = html.lastIndexOf('</script>');
+const jsCode = html.substring(startIdx, endIdx);
+
+// Run in context
+const vm = require('vm');
+const context = {
+  document: dom,
+  window: window,
+  console: console,
+  setTimeout: setTimeout,
+  isDimmed: false,
+  currentFontSize: 1.28
+};
+vm.createContext(context);
+vm.runInContext(jsCode, context);
+
+// Test switchSurah('anfal')
+console.log('Testing switchSurah("anfal")...');
+context.switchSurah('anfal');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH AL-ANFAL ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+dom.getElementById('tadabburList').children.forEach((c, i) => {
+  console.log(`  Item #${i+1}: ${c.innerHTML.trim()}`);
+});
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة الأنفال') {
+  console.error('FAIL: contextDeckSurahTitle is wrong!');
+  process.exit(1);
+}
+if (!dom.getElementById('rhymeLine').textContent.includes('إنّما للمؤمنين')) {
+  console.error('FAIL: rhymeLine is wrong!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty!');
+  process.exit(1);
+}
+
+// Test switchSurah('tawbah')
+console.log('\nTesting switchSurah("tawbah")...');
+context.switchSurah('tawbah');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH AT-TAWBAH ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة التوبة') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Tawbah!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Tawbah!');
+  process.exit(1);
+}
+
+// Test switchSurah('yunus')
+console.log('\nTesting switchSurah("yunus")...');
+context.switchSurah('yunus');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH YUNUS ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة يونس') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Yunus!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Yunus!');
+  process.exit(1);
+}
+
+// Test switchSurah('hud')
+console.log('\nTesting switchSurah("hud")...');
+context.switchSurah('hud');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH HUD ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة هود') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Hud!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Hud!');
+  process.exit(1);
+}
+
+// Test switchSurah('yusuf')
+console.log('\nTesting switchSurah("yusuf")...');
+context.switchSurah('yusuf');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH YUSUF ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة يوسف') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Yusuf!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Yusuf!');
+  process.exit(1);
+}
+
+// Test switchSurah('rad')
+console.log('\nTesting switchSurah("rad")...');
+context.switchSurah('rad');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH AR-RA\'D ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة الرعد') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Rad!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Rad!');
+  process.exit(1);
+}
+
+// Test switchSurah('ibrahim')
+console.log('\nTesting switchSurah("ibrahim")...');
+context.switchSurah('ibrahim');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH IBRAHIM ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة إبراهيم') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Ibrahim!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Ibrahim!');
+  process.exit(1);
+}
+
+// Test switchSurah('hijr')
+console.log('\nTesting switchSurah("hijr")...');
+context.switchSurah('hijr');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH AL-HIJR ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة الحجر') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Hijr!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Hijr!');
+  process.exit(1);
+}
+
+// Test switchSurah('nahl')
+console.log('\nTesting switchSurah("nahl")...');
+context.switchSurah('nahl');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH AN-NAHL ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة النحل') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Nahl!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Nahl!');
+  process.exit(1);
+}
+
+// Test switchSurah('isra')
+console.log('\nTesting switchSurah("isra")...');
+context.switchSurah('isra');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH AL-ISRA ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة الإسراء') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Isra!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Isra!');
+  process.exit(1);
+}
+
+// Test switchSurah('kahf')
+console.log('\nTesting switchSurah("kahf")...');
+context.switchSurah('kahf');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH AL-KAHF ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة الكهف') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Kahf!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Kahf!');
+  process.exit(1);
+}
+
+// Test switchSurah('maryam')
+console.log('\nTesting switchSurah("maryam")...');
+context.switchSurah('maryam');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH MARYAM ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة مريم') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Maryam!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Maryam!');
+  process.exit(1);
+}
+
+// Test switchSurah('taha')
+console.log('\nTesting switchSurah("taha")...');
+context.switchSurah('taha');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH TA-HA ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة طه') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Taha!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Taha!');
+  process.exit(1);
+}
+
+// Test switchSurah('anbiya')
+console.log('\nTesting switchSurah("anbiya")...');
+context.switchSurah('anbiya');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH AL-ANBIYA ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة الأنبياء') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Anbiya!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Anbiya!');
+  process.exit(1);
+}
+
+console.log('\n>>> ALL CLIENT SIMULATION CHECKS PASSED 100%! <<<');

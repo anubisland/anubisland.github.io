@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <linearGradient id="emblemGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd54f"/>
+      <stop offset="35%" stop-color="#d4af37"/>
+      <stop offset="70%" stop-color="#b8860b"/>
+      <stop offset="100%" stop-color="#785306"/>
+    </linearGradient>
+    <filter id="emblemShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#5a3e04" flood-opacity="0.35"/>
+    </filter>
+  </defs>
+
+  <!-- نجمة الإتقان الثمانية العليا المشعة -->
+  <g transform="translate(50, 16)" filter="url(#emblemShadow)">
+    <rect x="-6" y="-6" width="12" height="12" fill="url(#emblemGold)" rx="1.5"/>
+    <rect x="-6" y="-6" width="12" height="12" fill="url(#emblemGold)" rx="1.5" transform="rotate(45)"/>
+    <circle r="2.5" fill="#ffffff"/>
+  </g>
+
+  <!-- حامل المصحف (الرحلة المذهبة) -->
+  <path d="M34,70 L39,84 C41,87 45,88 48,86 L50,83 L52,86 C55,88 59,87 61,84 L66,70 Z" 
+        fill="url(#emblemGold)" filter="url(#emblemShadow)"/>
+
+  <!-- غلاف المصحف الجلدي الخلفي المذهب -->
+  <path d="M20,64 C28,62 43,61 50,65 C57,61 72,62 80,64 C82,65 83,67 82,69 C75,71 58,73 50,70 C42,73 25,71 18,69 C17,67 18,65 20,64 Z" 
+        fill="#785306"/>
+
+  <!-- صفحات المصحف الشريف المفتوح (المحكم) -->
+  <!-- الصفحة اليمنى -->
+  <path d="M50,60 C58,55 74,56 82,59 C83,59 84,58 84,57 L81,36 C81,35 80,34 79,34 C71,32 57,32 50,37 Z" 
+        fill="url(#emblemGold)" stroke="#6b4a03" stroke-width="0.8" filter="url(#emblemShadow)"/>
+  
+  <!-- تفاصيل السطور القرآنية على الصفحة اليمنى -->
+  <line x1="55" y1="43" x2="75" y2="41" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
+  <line x1="55" y1="48" x2="76" y2="46" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
+  <line x1="55" y1="53" x2="74" y2="51" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- الصفحة اليسرى -->
+  <path d="M50,60 C42,55 26,56 18,59 C17,59 16,58 16,57 L19,36 C19,35 20,34 21,34 C29,32 43,32 50,37 Z" 
+        fill="url(#emblemGold)" stroke="#6b4a03" stroke-width="0.8" filter="url(#emblemShadow)"/>
+
+  <!-- تفاصيل السطور القرآنية على الصفحة اليسرى -->
+  <line x1="45" y1="43" x2="25" y2="41" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
+  <line x1="45" y1="48" x2="24" y2="46" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
+  <line x1="45" y1="53" x2="26" y2="51" stroke="#ffffff" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- شريط فاصل المصحف المتدلي في المنتصف -->
+  <path d="M50,37 C49.5,45 50.5,56 50,68 C49.8,71 51.5,72 52,69 C52.5,60 51.5,48 50,37 Z" 
+        fill="#ffffff" stroke="url(#emblemGold)" stroke-width="0.8"/>
+</svg>
