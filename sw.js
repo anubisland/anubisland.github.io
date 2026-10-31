@@ -1,5 +1,5 @@
 // Service Worker for "معراج الإتقان في متشابهات القرآن"
-const CACHE_NAME = 'miraj-itqan-v27-qasas';
+const CACHE_NAME = 'miraj-itqan-v28-ankabut';
 const STATIC_ASSETS = [
   './',
   './index.html',
