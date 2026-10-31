@@ -74847,8 +74847,30 @@
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js')
-            .then(reg => console.log('ServiceWorker registered:', reg.scope))
+            .then(reg => {
+                console.log('ServiceWorker registered:', reg.scope);
+                reg.update();
+                reg.addEventListener('updatefound', () => {
+                    const newWorker = reg.installing;
+                    if (newWorker) {
+                        newWorker.addEventListener('statechange', () => {
+                            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                console.log('New version detected! Reloading to show fresh surahs...');
+                                window.location.reload();
+                            }
+                        });
+                    }
+                });
+            })
             .catch(err => console.log('ServiceWorker registration failed:', err));
+
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+            if (!refreshing) {
+                refreshing = true;
+                window.location.reload();
+            }
+        });
     });
 }
 </script>
