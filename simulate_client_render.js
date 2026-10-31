@@ -402,4 +402,24 @@ if (dom.getElementById('tadabburList').children.length === 0) {
   process.exit(1);
 }
 
+// Test switchSurah('furqan')
+console.log('\nTesting switchSurah("furqan")...');
+context.switchSurah('furqan');
+
+console.log('\n--- VERIFYING COLUMN 3 STATE FOR SURAH AL-FURQAN ---');
+console.log('contextDeckSurahTitle:', dom.getElementById('contextDeckSurahTitle').textContent);
+console.log('launchQuizBtnText:', dom.getElementById('launchQuizBtnText').textContent);
+console.log('rhymeLine:', dom.getElementById('rhymeLine').textContent);
+console.log('ruleSummary:', dom.getElementById('ruleSummary').innerHTML);
+console.log('tadabbur items count:', dom.getElementById('tadabburList').children.length);
+
+if (dom.getElementById('contextDeckSurahTitle').textContent !== 'سر التفرقة بالسياق في سورة الفرقان') {
+  console.error('FAIL: contextDeckSurahTitle is wrong for Furqan!');
+  process.exit(1);
+}
+if (dom.getElementById('tadabburList').children.length === 0) {
+  console.error('FAIL: tadabburList is empty for Furqan!');
+  process.exit(1);
+}
+
 console.log('\n>>> ALL CLIENT SIMULATION CHECKS PASSED 100%! <<<');
